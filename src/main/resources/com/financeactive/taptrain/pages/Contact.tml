@@ -1,0 +1,15 @@
+<html t:type="layout" title="Contact com.financeactive.taptrain"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<p>
+    <t:pagelink page="contact">Contact</t:pagelink>
+</p>
+
+${name}
+
+<t:valuefield value="name"/>
+<t:valuefield value="name"/>
+
+<t:randomizer value="name"/>
+
+</html>

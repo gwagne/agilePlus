@@ -1,0 +1,13 @@
+<html t:type="layout" title="HiLo Game 2.0 (Beta)"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <p>HiLo Game 2.0 (Beta)</p>
+
+    <p>${format:choose.number=target} [<a t:id="resetLink" t:type="actionlink">reset</a>] <em t:type="if" test="message">${prop:message}</em></p>
+
+<ul>
+    <li t:type="loop" source="1..10" value="var:guess"><a t:id="guessLink" t:type="actionlink" t:context="var:guess">Guess ${var:guess}</a></li>
+</ul>
+
+</html>

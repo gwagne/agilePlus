@@ -1,0 +1,6 @@
+<div xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+    <t:form>
+        <t:textfield t:id="thefield" value="value"/>
+        <t:submit/>
+    </t:form>
+</div>
