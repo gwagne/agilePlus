@@ -78,10 +78,14 @@ public class Layout {
         return section.contains(resources.getPageName()) ? "active" : null;
     }
 
-    @OnEvent("toggleLanguage")
+    @OnEvent(Events.toggleLanguage)
     void onToggleLanguage() {
         persistentLocale.set(
                 persistentLocale.isSet() && "fr".equals(persistentLocale.get().getLanguage()) ? Locale.ENGLISH : Locale.FRENCH
         );
+    }
+
+    interface Events {
+        String toggleLanguage = "toggleLanguage";
     }
 }

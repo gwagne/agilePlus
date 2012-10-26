@@ -5,10 +5,13 @@ import com.financeactive.taptrain.pages.About;
 import com.financeactive.taptrain.pages.Contact;
 import com.financeactive.taptrain.pages.Index;
 import com.financeactive.taptrain.pages.users.IndexUsers;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.beanvalidator.BeanValidatorConfigurer;
 import org.apache.tapestry5.beanvalidator.BeanValidatorSource;
 import org.apache.tapestry5.hibernate.HibernateSymbols;
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
@@ -20,8 +23,6 @@ import org.apache.tapestry5.services.BindingSource;
 import org.apache.tapestry5.services.ComponentClassResolver;
 import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.JavaScriptStackSource;
-
-import javax.validation.Configuration;
 
 import static java.lang.Boolean.TRUE;
 
@@ -39,6 +40,7 @@ public class AppModule {
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
         binder.bind(Sections.class);
+        binder.bind(TapTrainRealm.class);
     }
 
     public void contributeFactoryDefaults(
@@ -67,7 +69,7 @@ public class AppModule {
     public BeanValidatorConfigurer buildBeanValidatorConfigurer() {
         return new BeanValidatorConfigurer() {
             @Override
-            public void configure(Configuration<?> configuration) {
+            public void configure(javax.validation.Configuration<?> configuration) {
                 configuration.ignoreXmlConfiguration();
             }
         };
@@ -96,5 +98,10 @@ public class AppModule {
         configuration.add("index", new Section(componentClassResolver, "Index", Index.class));
         configuration.add("about", new Section(componentClassResolver, "About", About.class));
         configuration.add("contact", new Section(componentClassResolver, "Contact", Contact.class));
+    }
+
+    @Contribute(WebSecurityManager.class)
+    public void contributeWebSecurityManager(Configuration<Realm> configuration, TapTrainRealm tapTrainRealm) {
+        configuration.add(tapTrainRealm);
     }
 }

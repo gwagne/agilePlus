@@ -64,6 +64,12 @@
             <version>${h2.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.tynamo</groupId>
+            <artifactId>tapestry-security</artifactId>
+            <version>${tapestry-security.version}</version>
+        </dependency>
+
         <!-- A dependency on either JUnit or TestNG is required, or the surefire plugin (which runs the tests)
 will fail, preventing Maven from packaging the WAR. Tapestry includes a large number
 of testing facilities designed for use with TestNG (http://testng.org/), so it's recommended. -->
@@ -188,6 +194,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         <tapestry5-jquery.version>3.3.3</tapestry5-jquery.version>
         <testng-release-version>6.8</testng-release-version>
         <guava.version>13.0</guava.version>
+        <tapestry-security.version>0.4.6</tapestry-security.version>
     </properties>
 
 </project>
