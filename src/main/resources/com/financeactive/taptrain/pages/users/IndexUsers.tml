@@ -1,19 +1,19 @@
-<html t:type="layout" title="All Users"
+<html t:type="layout" title="${message:title}"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-<t:pagelink page="users/createusers">New user</t:pagelink>
+<t:pagelink page="users/createusers">${message:action.newUser}</t:pagelink>
 &nbsp;
-<t:actionlink t:id="randomUser" zone="usersGridZone">New random user</t:actionlink>
+<t:actionlink t:id="randomUser" zone="usersGridZone">${message:action.newRandomUser}</t:actionlink>
 
 <hr/>
 
 <t:zone t:id="usersGridZone" update="show">
     <t:grid source="users" row="var:user" add="actions" class="table table-striped table-bordered">
         <p:actionsCell>
-            <t:actionlink t:id="delete" context="var:user" zone="usersGridZone" t:mixins="simpleAlert" message="Êtes vous sûr d'être sûr?">Delete</t:actionlink>
+            <t:actionlink t:id="delete" context="var:user" zone="usersGridZone" t:mixins="simpleAlert" message="Êtes vous sûr d'être sûr?">${message:action.delete}</t:actionlink>
             &nbsp;
-            <t:actionlink t:id="edit" context="var:user" zone="userFormZone">Edit</t:actionlink>
+            <t:actionlink t:id="edit" context="var:user" zone="userFormZone">${message:action.edit}</t:actionlink>
         </p:actionsCell>
     </t:grid>
 </t:zone>

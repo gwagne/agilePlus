@@ -8,10 +8,14 @@ import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Import;
+import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.services.PersistentLocale;
+
+import java.util.Locale;
 
 /**
  * Layout component for pages of application taptrain.
@@ -47,6 +51,9 @@ public class Layout {
     private ComponentResources resources;
 
     @Inject
+    private PersistentLocale persistentLocale;
+
+    @Inject
     @Property
     private Sections sections;
 
@@ -69,5 +76,12 @@ public class Layout {
 
     public String getClassForSections() {
         return section.contains(resources.getPageName()) ? "active" : null;
+    }
+
+    @OnEvent("toggleLanguage")
+    void onToggleLanguage() {
+        persistentLocale.set(
+                persistentLocale.isSet() && "fr".equals(persistentLocale.get().getLanguage()) ? Locale.ENGLISH : Locale.FRENCH
+        );
     }
 }

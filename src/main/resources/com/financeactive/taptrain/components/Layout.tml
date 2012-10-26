@@ -39,6 +39,7 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                         <li t:type="loop" source="sections" value="section" class="prop:classForSections">
                             <t:pagelink page="prop:section.index">${section.name}</t:pagelink>
                         </li>
+                        <li><t:eventlink event="toggleLanguage">${message:toggleLanguage}</t:eventlink></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
