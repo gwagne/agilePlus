@@ -36,11 +36,8 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                 <t:pagelink page="index" class="brand">Training application - ${appVersion}</t:pagelink>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
-                            <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
-                        </li>
-                        <li class="">
-                            <t:pagelink page="users/indexusers">Users</t:pagelink>
+                        <li t:type="loop" source="sections" value="section" class="prop:classForSections">
+                            <t:pagelink page="prop:section.index">${section.name}</t:pagelink>
                         </li>
                     </ul>
                 </div>

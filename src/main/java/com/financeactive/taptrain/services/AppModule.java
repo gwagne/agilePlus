@@ -1,6 +1,10 @@
 package com.financeactive.taptrain.services;
 
 import com.financeactive.taptrain.bindings.FormatBindingFactory;
+import com.financeactive.taptrain.pages.About;
+import com.financeactive.taptrain.pages.Contact;
+import com.financeactive.taptrain.pages.Index;
+import com.financeactive.taptrain.pages.users.IndexUsers;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.beanvalidator.BeanValidatorConfigurer;
 import org.apache.tapestry5.beanvalidator.BeanValidatorSource;
@@ -9,9 +13,11 @@ import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Local;
 import org.apache.tapestry5.services.BindingFactory;
 import org.apache.tapestry5.services.BindingSource;
+import org.apache.tapestry5.services.ComponentClassResolver;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
@@ -20,6 +26,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptStack;
 import org.apache.tapestry5.services.javascript.JavaScriptStackSource;
 import org.slf4j.Logger;
 
+import javax.validation.Configuration;
 import java.io.IOException;
 
 import static java.lang.Boolean.TRUE;
@@ -37,6 +44,7 @@ public class AppModule {
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
+        binder.bind(Sections.class);
     }
 
     public void contributeFactoryDefaults(
@@ -60,6 +68,20 @@ public class AppModule {
         // the first locale name is the default when there's no reasonable match).
         configuration.add(SymbolConstants.HMAC_PASSPHRASE, "secret");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr,en");
+    }
+
+    public BeanValidatorConfigurer buildBeanValidatorConfigurer() {
+        return new BeanValidatorConfigurer() {
+            @Override
+            public void configure(Configuration<?> configuration) {
+                configuration.ignoreXmlConfiguration();
+            }
+        };
+    }
+
+    @Contribute(BeanValidatorSource.class)
+    public void contributeBeanValidatorSource(OrderedConfiguration<BeanValidatorConfigurer> configuration, @Local BeanValidatorConfigurer beanValidatorConfigurer) {
+        configuration.add("BeanValidator", beanValidatorConfigurer);
     }
 
     @Contribute(BindingSource.class)
@@ -94,6 +116,7 @@ public class AppModule {
      */
     public RequestFilter buildTimingFilter(final Logger log) {
         return new RequestFilter() {
+            @Override
             public boolean service(Request request, Response response, RequestHandler handler)
                     throws IOException {
                 long startTime = System.currentTimeMillis();
@@ -120,22 +143,20 @@ public class AppModule {
      * from the same module.  Without @Local, there would be an error due to the other service(s)
      * that implement RequestFilter (defined in other modules).
      */
-    public void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration,
-                                         @Local
-                                         RequestFilter filter) {
+    @Contribute(RequestHandler.class)
+    public void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration, @Local RequestFilter filter) {
         // Each contribution to an ordered configuration has a name, When necessary, you may
         // set constraints to precisely control the invocation order of the contributed filter
         // within the pipeline.
 
-        configuration.add("Timing", filter);
+        configuration.add("Timing", filter, "before:*");
     }
 
-    @Contribute(BeanValidatorSource.class)
-    public static void provideBeanValidatorConfigurer(OrderedConfiguration<BeanValidatorConfigurer> configuration) {
-        configuration.add("MyConfigurer", new BeanValidatorConfigurer() {
-            public void configure(javax.validation.Configuration<?> configuration) {
-                configuration.ignoreXmlConfiguration();
-            }
-        });
+    @Contribute(Sections.class)
+    public void contributeSections(OrderedConfiguration<Section> configuration, @Inject ComponentClassResolver componentClassResolver) {
+        configuration.add("indexUsers", new Section(componentClassResolver, "Users", IndexUsers.class), "after:index");
+        configuration.add("index", new Section(componentClassResolver, "Index", Index.class));
+        configuration.add("about", new Section(componentClassResolver, "About", About.class));
+        configuration.add("contact", new Section(componentClassResolver, "Contact", Contact.class));
     }
 }
