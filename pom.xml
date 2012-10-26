@@ -135,12 +135,6 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${maven-jetty-plugin.version}</version>
                 <configuration>
-                    <!-- Log to the console. -->
-                    <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
-                        <!-- This doesn't do anything for Jetty, but is a workaround for a Maven bug
-                             that prevents the requestLog from being set. -->
-                        <append>true</append>
-                    </requestLog>
                     <systemProperties>
                         <systemProperty>
                             <name>tapestry.execution-mode</name>
