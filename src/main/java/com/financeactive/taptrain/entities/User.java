@@ -112,6 +112,8 @@ public class User {
     public interface Properties {
         String email = "email";
 
+        String firstName = "firstName";
+
         String id = "id";
     }
 }

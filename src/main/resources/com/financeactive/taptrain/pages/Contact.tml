@@ -12,4 +12,8 @@ ${name}
 
 <t:randomizer value="name"/>
 
+<t:form>
+    <t:textfield value="name" t:mixins="jquery/Autocomplete"/>
+</t:form>
+
 </html>

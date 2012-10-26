@@ -67,6 +67,13 @@ public class IndexUsers {
     }
 
     @CommitAfter
+    @OnEvent(value = EventConstants.ACTION, component = "new")
+    void onActionFromNew() {
+        this.user = new User();
+        renderer.addRender(Zones.userForm, userFormZone);
+    }
+
+    @CommitAfter
     @OnEvent(value = EventConstants.ACTION, component = "randomUser")
     void createRandomUser() {
         Random random = new Random();
