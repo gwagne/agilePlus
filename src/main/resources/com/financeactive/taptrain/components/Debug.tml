@@ -1,0 +1,56 @@
+<t:if test="developmentMode"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
+    <div class="preferences" style="width:34px;">
+        <div class="user-list-params">
+            <div class="user-param icone">
+                <a href="#" id="openDebug"><img src="${context:images/layout/ico_debug.png}" alt="Debug infos"/></a>
+
+                <t:zone t:id="debugDialog" t:mixins="dialog" parameters="dialogParameters" title="Debug informations"
+                        style="width:1px; height:1px; display:none;">
+                    <t:zone t:id="debugZone" elementName="div" class="t-env-data">
+
+                        <h2>Request information -
+                            <t:actionlink t:id="updateDebugZone" zone="debugZone">Update</t:actionlink>
+                        </h2>
+
+                        <dl>
+                            <dt>Tapestry Version</dt>
+                            <dd>${tapestryVersion}</dd>
+                            <dt>Application Version</dt>
+                            <dd>${applicationVersion}</dd>
+                        </dl>
+
+                        <h2>Request</h2>
+                        <t:renderobject object="request"/>
+
+                        <t:if test="hasSession">
+                            <h2>Session</h2>
+                            <dl>
+                                <t:loop source="session.attributeNames" value="attributeName">
+                                    <dt>${attributeName}</dt>
+                                    <dd>
+                                        <t:renderobject object="attributeValue"/>
+                                    </dd>
+                                </t:loop>
+                            </dl>
+                        </t:if>
+
+                        <h2>System Properties</h2>
+                        <dl>
+                            <t:loop source="systemProperties" value="propertyName">
+                                <dt>${propertyName}</dt>
+                                <dd>
+                                    <t:if test="! complexProperty">
+                                        ${propertyValue}
+                                    </t:if>
+                                </dd>
+                            </t:loop>
+                        </dl>
+
+                    </t:zone>
+                </t:zone>
+            </div>
+        </div>
+    </div>
+</t:if>

@@ -53,6 +53,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.got5</groupId>
+            <artifactId>tapestry5-highcharts</artifactId>
+            <version>${tapestry5-highcharts.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
@@ -207,6 +213,7 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
         <testng-release-version>6.8</testng-release-version>
         <guava.version>13.0</guava.version>
         <tapestry-security.version>0.4.6</tapestry-security.version>
+        <tapestry5-highcharts.version>1.1.0</tapestry5-highcharts.version>
     </properties>
 
 </project>
