@@ -2,7 +2,7 @@
 <suite name="taptrain Application Test Suite" annotations="1.5">
     <test name="Unit Tests">
         <packages>
-            <package name="com.financeactive.taptrain"/>
+            <package name="opensource.pc.gw"/>
         </packages>
     </test>
 </suite>

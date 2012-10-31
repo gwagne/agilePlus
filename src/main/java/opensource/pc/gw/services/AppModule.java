@@ -38,7 +38,6 @@ public class AppModule {
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
         binder.bind(Sections.class);
-        //binder.bind(TapTrainRealm.class);
     }
 
     public void contributeFactoryDefaults(
@@ -84,11 +83,11 @@ public class AppModule {
         configuration.add("format", new FormatBindingFactory(bindingSource));
     }
 
-//    @Contribute(JavaScriptStackSource.class)
-//    public void contributeJavaScriptStackSource(
-//            MappedConfiguration<String, JavaScriptStack> configuration) {
-//        configuration.add(TapTrainStack.NAME, new TapTrainStack());
-//    }
+    @Contribute(JavaScriptStackSource.class)
+    public void contributeJavaScriptStackSource(
+            MappedConfiguration<String, JavaScriptStack> configuration) {
+        configuration.add(TapTrainStack.NAME, new TapTrainStack());
+    }
 
     @Contribute(Sections.class)
     public void contributeSections(OrderedConfiguration<Section> configuration, @Inject ComponentClassResolver componentClassResolver) {
@@ -97,9 +96,4 @@ public class AppModule {
         configuration.add("about", new Section(componentClassResolver, "About", About.class));
         configuration.add("contact", new Section(componentClassResolver, "Contact", Contact.class));
     }
-
-//    @Contribute(WebSecurityManager.class)
-//    public void contributeWebSecurityManager(Configuration<Realm> configuration, TapTrainRealm tapTrainRealm) {
-//        configuration.add(tapTrainRealm);
-    //}
 }
