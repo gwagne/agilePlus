@@ -28,6 +28,11 @@ public class User {
     private Long id;
 
     @NotNull
+    @Size(min = 3)
+    @Column(unique = true)
+    private String login;
+
+    @NotNull
     private Honorific honorific;
 
     @NotNull
@@ -48,13 +53,13 @@ public class User {
     @Pattern(regexp = PATTERN_EMAIL)
     private String email;
 
-    public Long getId() {
-        return id;
-    }
-
     @NonVisual
     public boolean isNew() {
         return id == null;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Honorific getHonorific() {
