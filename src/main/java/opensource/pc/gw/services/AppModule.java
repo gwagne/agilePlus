@@ -40,7 +40,7 @@ public class AppModule {
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
         binder.bind(Sections.class);
-        binder.bind(TapTrainRealm.class);
+        //binder.bind(TapTrainRealm.class);
     }
 
     public void contributeFactoryDefaults(
@@ -62,7 +62,7 @@ public class AppModule {
         // locales to just "en" (English). As you add localised message catalogs and other assets,
         // you can extend this list of locales (it's a comma separated series of locale names;
         // the first locale name is the default when there's no reasonable match).
-        configuration.add(SymbolConstants.HMAC_PASSPHRASE, "secret");
+        //configuration.add(SymbolConstants.HMAC_PASSPHRASE, "secret");
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "fr,en");
     }
 
@@ -100,8 +100,8 @@ public class AppModule {
         configuration.add("contact", new Section(componentClassResolver, "Contact", Contact.class));
     }
 
-    @Contribute(WebSecurityManager.class)
-    public void contributeWebSecurityManager(Configuration<Realm> configuration, TapTrainRealm tapTrainRealm) {
-        configuration.add(tapTrainRealm);
-    }
+//    @Contribute(WebSecurityManager.class)
+//    public void contributeWebSecurityManager(Configuration<Realm> configuration, TapTrainRealm tapTrainRealm) {
+//        configuration.add(tapTrainRealm);
+    //}
 }

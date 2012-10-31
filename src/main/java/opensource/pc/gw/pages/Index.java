@@ -12,10 +12,7 @@ import org.apache.tapestry5.ioc.annotations.Symbol;
 
 import java.util.Date;
 
-/**
- * Start page of application taptrain.
- */
-@RequiresAuthentication
+//@RequiresAuthentication will be used when need of securising application
 public class Index
 {
     @Property
