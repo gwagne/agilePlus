@@ -1,10 +1,13 @@
 package opensource.pc.gw.entities;
 
 
+import org.apache.tapestry5.beaneditor.NonVisual;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
 public class Project {
 
     @GeneratedValue
@@ -14,35 +17,25 @@ public class Project {
     @NotNull
     private String name;
 
-    @NotNull
-    @OneToOne()
-    @JoinColumn(name="id")
-    private User owner;
+    //TODO NOTION DE USER EN SESSION ET OWNER
+//    @NotNull
+//    @OneToOne()
+//    private User owner;
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private Backlog backlog;
 
-    @NotNull
     @OneToMany()
-    @JoinColumn(name="id")
     private List<Release> releases;
 
-    public Project(Backlog backlog, Long id, String name, User owner, List<Release> releases) {
-        this.backlog = backlog;
-        this.id = id;
-        this.name = name;
-        this.owner = owner;
-        this.releases = releases;
+    @NonVisual
+    public boolean isNew(){
+        return (id == null);
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -53,13 +46,13 @@ public class Project {
         this.name = name;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+   // public User getOwner() {
+   //     return owner;
+   // }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+   // public void setOwner(User owner) {
+   //     this.owner = owner;
+   // }
 
     public Backlog getBacklog() {
         return backlog;
@@ -75,5 +68,10 @@ public class Project {
 
     public void setReleases(List<Release> releases) {
         this.releases = releases;
+    }
+
+    public interface Properties {
+        String name = "name";
+        String id = "id";
     }
 }

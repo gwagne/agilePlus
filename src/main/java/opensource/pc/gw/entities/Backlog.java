@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
 public class Backlog {
 
 
@@ -13,32 +14,18 @@ public class Backlog {
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private Project projectId;
 
-    @NotNull
     @OneToMany
-    @JoinColumn(name="id")
     private List<Epic> epics;
 
-    @NotNull
-    @OneToOne()
-    @JoinColumn(name="id")
-    private User owner;
-
-    public Backlog(Long id, Project projectId, List<Epic> epics, User owner) {
-        this.id = id;
-        this.projectId = projectId;
-        this.epics = epics;
-        this.owner = owner;
-    }
+    //TODO ACTIVER USER CONTEXT
+  //  @NotNull
+  //  @OneToOne()
+  //  private User owner;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Project getProjectId() {
@@ -57,11 +44,11 @@ public class Backlog {
         this.epics = epics;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+//    public User getOwner() {
+//        return owner;
+//    }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+//    public void setOwner(User owner) {
+//        this.owner = owner;
+//    }
 }

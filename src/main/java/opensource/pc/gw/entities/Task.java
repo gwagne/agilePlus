@@ -4,6 +4,7 @@ package opensource.pc.gw.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Task {
 
     @GeneratedValue
@@ -12,7 +13,6 @@ public class Task {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id")
     private Story story;
 
     @NotNull
@@ -23,25 +23,11 @@ public class Task {
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private User owner;
 
 
-
-    public Task(Long id, Story story, String description, int hoursEstimate, User owner) {
-        this.id = id;
-        this.story = story;
-        this.description = description;
-        this.hoursEstimate = hoursEstimate;
-        this.owner = owner;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Story getStory() {

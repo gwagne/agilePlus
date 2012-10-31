@@ -102,6 +102,14 @@ public class User {
         this.email = email;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -115,10 +123,9 @@ public class User {
     }
 
     public interface Properties {
+        String login = "login";
         String email = "email";
-
         String firstName = "firstName";
-
         String id = "id";
     }
 }

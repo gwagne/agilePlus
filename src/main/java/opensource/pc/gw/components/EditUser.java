@@ -44,15 +44,21 @@ public class EditUser {
     @OnEvent(value = EventConstants.VALIDATE, component = "userForm")
     void onValidate() {
 
-        Criteria criteria = session.createCriteria(User.class)
+        Criteria criteriaMail = session.createCriteria(User.class)
                 .add(Restrictions.eq(User.Properties.email, user.getEmail()));
+        Criteria criteriaLogin = session.createCriteria(User.class)
+                .add(Restrictions.eq(User.Properties.login, user.getLogin()));
         if (!user.isNew())
-            criteria.add(Restrictions.ne(User.Properties.id, user.getId()));
+            criteriaMail.add(Restrictions.ne(User.Properties.id, user.getId()));
+        if (!user.isNew())
+            criteriaLogin.add(Restrictions.ne(User.Properties.id, user.getId()));
 
-        Number count = (Number) criteria.setProjection(Projections.count(User.Properties.id)).uniqueResult();
-
+        Number count = (Number) criteriaMail.setProjection(Projections.count(User.Properties.id)).uniqueResult();
         if (count.longValue() > 0)
             userForm.recordError(messages.format("already-existing.email", user.getEmail()));
+        count = (Number) criteriaLogin.setProjection(Projections.count(User.Properties.id)).uniqueResult();
+        if (count.longValue() > 0)
+            userForm.recordError(messages.format("already-existing.login", user.getLogin()));
     }
 
     @CommitAfter

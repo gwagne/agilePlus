@@ -1,11 +1,9 @@
 package opensource.pc.gw.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Epic {
 
     @GeneratedValue
@@ -20,22 +18,10 @@ public class Epic {
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private User owner;
-
-    public Epic(Long id, String name, String description, User owner) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.owner = owner;
-    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

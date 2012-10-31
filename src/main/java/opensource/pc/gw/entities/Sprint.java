@@ -4,8 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
 public class Sprint {
-
 
     @GeneratedValue
     @Id
@@ -13,7 +13,6 @@ public class Sprint {
 
     @NotNull
     @ManyToOne()
-    @JoinColumn(name="id")
     private Release version;
 
     @NotNull
@@ -24,22 +23,11 @@ public class Sprint {
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private User owner;
 
     @NotNull
     @OneToMany
-    @JoinColumn(name="id")
     private List<Story> stories;
-
-    public Sprint(String description, Long id, User owner, int sprintNumber, List<Story> stories, Release version) {
-        this.description = description;
-        this.id = id;
-        this.owner = owner;
-        this.sprintNumber = sprintNumber;
-        this.stories = stories;
-        this.version = version;
-    }
 
     public String getDescription() {
         return description;
@@ -51,10 +39,6 @@ public class Sprint {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getOwner() {

@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity
 public class Story {
 
     @GeneratedValue
@@ -13,7 +14,6 @@ public class Story {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id")
     private Sprint sprint;
 
     @NotNull
@@ -26,29 +26,15 @@ public class Story {
     private int pointsEstimate;
 
     @NotNull
-    @OneToOne()
-    @JoinColumn(name="id")
+    @OneToOne
     private User owner;
 
     @NotNull
     @OneToMany
-    @JoinColumn(name="id")
     private List<Task> tasks;
-
-    public Story(Long id, String name, String description, int pointsEstimate, User owner) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.pointsEstimate = pointsEstimate;
-        this.owner = owner;
-    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

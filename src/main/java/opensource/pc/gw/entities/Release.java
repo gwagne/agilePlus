@@ -3,6 +3,7 @@ package opensource.pc.gw.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Release {
 
     @GeneratedValue
@@ -11,7 +12,6 @@ public class Release {
 
     @NotNull
     @ManyToOne()
-    @JoinColumn(name="id")
     private Project project;
 
     @NotNull
@@ -22,16 +22,7 @@ public class Release {
 
     @NotNull
     @OneToOne()
-    @JoinColumn(name="id")
     private User owner;
-
-    public Release(String description, Long id, String name, User owner, Project project) {
-        this.description = description;
-        this.id = id;
-        this.name = name;
-        this.owner = owner;
-        this.project = project;
-    }
 
     public String getDescription() {
         return description;
@@ -43,10 +34,6 @@ public class Release {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
