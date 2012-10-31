@@ -1,6 +1,5 @@
 package opensource.pc.gw.pages;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.alerts.AlertManager;
 import org.apache.tapestry5.annotations.InjectComponent;

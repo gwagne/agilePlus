@@ -16,10 +16,6 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
 import java.util.UUID;
 
-/**
- * @author olemerdy
- * @since 25/10/12
- */
 @Import(library = "randomizer.js")
 public class Randomizer {
 

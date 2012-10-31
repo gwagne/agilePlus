@@ -5,8 +5,6 @@ import opensource.pc.gw.pages.About;
 import opensource.pc.gw.pages.Contact;
 import opensource.pc.gw.pages.Index;
 import opensource.pc.gw.pages.users.IndexUsers;
-import org.apache.shiro.realm.Realm;
-import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.beanvalidator.BeanValidatorConfigurer;
 import org.apache.tapestry5.beanvalidator.BeanValidatorSource;
@@ -86,11 +84,11 @@ public class AppModule {
         configuration.add("format", new FormatBindingFactory(bindingSource));
     }
 
-    @Contribute(JavaScriptStackSource.class)
-    public void contributeJavaScriptStackSource(
-            MappedConfiguration<String, JavaScriptStack> configuration) {
-        configuration.add(TapTrainStack.NAME, new TapTrainStack());
-    }
+//    @Contribute(JavaScriptStackSource.class)
+//    public void contributeJavaScriptStackSource(
+//            MappedConfiguration<String, JavaScriptStack> configuration) {
+//        configuration.add(TapTrainStack.NAME, new TapTrainStack());
+//    }
 
     @Contribute(Sections.class)
     public void contributeSections(OrderedConfiguration<Section> configuration, @Inject ComponentClassResolver componentClassResolver) {

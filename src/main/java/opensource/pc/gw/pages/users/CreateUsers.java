@@ -11,10 +11,8 @@ import org.hibernate.Session;
 
 import static java.lang.String.format;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
+
+
 public class CreateUsers {
 
     @Inject

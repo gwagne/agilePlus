@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
 public class FormatBindingFactory implements BindingFactory {
 
     private static final String SEPARATOR = "=";

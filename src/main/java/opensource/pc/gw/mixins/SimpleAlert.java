@@ -11,10 +11,6 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.javascript.InitializationPriority;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-/**
- * @author olemerdy
- * @since 25/10/12
- */
 @Import(library = "simplealert.js")
 public class SimpleAlert {
 

@@ -22,10 +22,7 @@ import java.util.UUID;
 
 import static java.lang.String.format;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
+
 public class IndexUsers {
 
     @Inject

@@ -8,10 +8,7 @@ import org.apache.tapestry5.ioc.Messages;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
+
 public class FormatBinding extends AbstractBinding {
 
     private final Messages messages;

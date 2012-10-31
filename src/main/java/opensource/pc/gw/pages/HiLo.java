@@ -13,10 +13,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import java.util.Random;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
 public class HiLo {
 
     private static final Random RANDOM = new Random(System.nanoTime());
