@@ -18,13 +18,13 @@ of where to look for pages, components and mixins. -->
     <context-param>
         <param-name>tapestry.development-modules</param-name>
         <param-value>
-            com.financeactive.taptrain.services.DevelopmentModule
+            opensource.pc.gw.services.DevelopmentModule
         </param-value>
     </context-param>
     <context-param>
         <param-name>tapestry.qa-modules</param-name>
         <param-value>
-            com.financeactive.taptrain.services.QaModule
+            opensource.pc.gw.services.QaModule
         </param-value>
     </context-param>
     <filter>

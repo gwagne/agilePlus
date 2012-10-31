@@ -1,6 +1,7 @@
 package com.financeactive.taptrain.pages;
 
-import com.financeactive.taptrain.TapTrain;
+import opensource.pc.gw.pages.HiLo;
+import opensource.pc.gw.TapTrain;
 import org.apache.tapestry5.dom.Document;
 import org.apache.tapestry5.test.PageTester;
 import org.testng.annotations.BeforeClass;
