@@ -27,9 +27,6 @@ public class EditProject {
     AlertManager alertManager;
 
     @Inject
-    Messages messages;
-
-    @Inject
     Session session;
 
     @InjectComponent

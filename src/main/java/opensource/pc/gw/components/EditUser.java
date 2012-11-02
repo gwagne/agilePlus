@@ -10,7 +10,6 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -19,17 +18,12 @@ import org.hibernate.criterion.Restrictions;
 
 import static java.lang.String.format;
 
-/**
- * @author olemerdy
- * @since 25/10/12
- */
+
 public class EditUser {
 
     @Inject
     AlertManager alertManager;
 
-    @Inject
-    Messages messages;
 
     @Inject
     Session session;
@@ -55,10 +49,10 @@ public class EditUser {
 
         Number count = (Number) criteriaMail.setProjection(Projections.count(User.Properties.id)).uniqueResult();
         if (count.longValue() > 0)
-            userForm.recordError(messages.format("already-existing.email", user.getEmail()));
+            userForm.recordError(String.format("already existing email %s", user.getEmail()));
         count = (Number) criteriaLogin.setProjection(Projections.count(User.Properties.id)).uniqueResult();
         if (count.longValue() > 0)
-            userForm.recordError(messages.format("already-existing.login", user.getLogin()));
+            userForm.recordError(String.format("already-existing login %s", user.getLogin()));
     }
 
     @CommitAfter
