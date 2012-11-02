@@ -2,17 +2,23 @@ package opensource.pc.gw.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
+@Table(name = "release")
 public class Release {
 
     @GeneratedValue
     @Id
+    @Column(name = "release_id")
     private Long id;
 
-    @NotNull
-    @ManyToOne()
+    @ManyToOne
+    @JoinColumn(name="project_id")
     private Project project;
+
+    @OneToMany(mappedBy = "release")
+    private Set<Sprint> sprints;
 
     @NotNull
     private String name;
@@ -20,9 +26,9 @@ public class Release {
     @NotNull
     private String description;
 
-    @NotNull
-    @OneToOne()
-    private User owner;
+//    @NotNull
+//    @OneToOne()
+//    private User owner;
 
     public String getDescription() {
         return description;
@@ -44,13 +50,13 @@ public class Release {
         this.name = name;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+//    public User getOwner() {
+//        return owner;
+    //   }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+//    public void setOwner(User owner) {
+//        this.owner = owner;
+//    }
 
     public Project getProject() {
         return project;

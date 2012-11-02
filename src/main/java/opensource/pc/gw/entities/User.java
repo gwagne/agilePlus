@@ -3,28 +3,22 @@ package opensource.pc.gw.entities;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * @author olemerdy
- * @since 24/10/12
- */
+
 @Entity
+@Table(name = "user")
 public class User {
 
     static final String PATTERN_EMAIL = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+((\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)?)+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9\\-]*[a-z0-9])?$";
 
     @GeneratedValue
     @Id
+    @Column(name="user_id")
     private Long id;
 
     @NotNull

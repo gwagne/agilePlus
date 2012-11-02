@@ -23,6 +23,7 @@ import static java.lang.String.format;
 
 public class EditProject {
 
+    @Inject
     AlertManager alertManager;
 
     @Inject
@@ -56,9 +57,8 @@ public class EditProject {
     Class onSuccess() {
         if(project.isNew()){
             Backlog backlog = new Backlog();
-            backlog.setProjectId(project);
-            session.save(backlog);
             project.setBacklog(backlog);
+            backlog.setProject(project);
         }
         session.save(project);
         alertManager.success(format("Created/Updated project %d", project.getId()));

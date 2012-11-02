@@ -2,16 +2,29 @@ package opensource.pc.gw.entities;
 
 
 import org.apache.tapestry5.beaneditor.NonVisual;
-
-import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.CascadeType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Parameter;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "project")
 public class Project {
 
     @GeneratedValue
     @Id
+    @Column(name = "project_id")
     private Long id;
 
     @NotNull
@@ -22,12 +35,11 @@ public class Project {
 //    @OneToOne()
 //    private User owner;
 
-    @NotNull
-    @OneToOne()
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
     private Backlog backlog;
 
-    @OneToMany()
-    private List<Release> releases;
+    @OneToMany(mappedBy = "project")
+    private Set<Release> releases;
 
     @NonVisual
     public boolean isNew(){
@@ -58,17 +70,17 @@ public class Project {
         return backlog;
     }
 
-    public void setBacklog(Backlog backlog) {
-        this.backlog = backlog;
+    public void setBacklog(Backlog projectBacklog) {
+        this.backlog = projectBacklog;
     }
 
-    public List<Release> getReleases() {
-        return releases;
-    }
+//    public List<Release> getReleases() {
+//        return releases;
+//    }
 
-    public void setReleases(List<Release> releases) {
-        this.releases = releases;
-    }
+//    public void setReleases(List<Release> releases) {
+//        this.releases = releases;
+//    }
 
     public interface Properties {
         String name = "name";

@@ -4,16 +4,20 @@ package opensource.pc.gw.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "story")
 public class Story {
 
     @GeneratedValue
     @Id
+    @Column(name = "story_id")
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne()
+    @JoinColumn(name="sprint_id")
     private Sprint sprint;
 
     @NotNull
@@ -25,13 +29,13 @@ public class Story {
     @NotNull
     private int pointsEstimate;
 
-    @NotNull
-    @OneToOne
-    private User owner;
+//    @NotNull
+//    @OneToOne
+    //   private User owner;
 
     @NotNull
-    @OneToMany
-    private List<Task> tasks;
+    @OneToMany(mappedBy = "story")
+    private Set<Task> tasks;
 
     public Long getId() {
         return id;
@@ -61,11 +65,11 @@ public class Story {
         this.pointsEstimate = pointsEstimate;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+//    public User getOwner() {
+//        return owner;
+//    }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+//    public void setOwner(User owner) {
+//        this.owner = owner;
+//    }
 }

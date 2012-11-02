@@ -5,14 +5,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="task")
 public class Task {
 
     @GeneratedValue
     @Id
+    @Column(name="task_id")
     private Long id;
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "story_id")
     private Story story;
 
     @NotNull
@@ -21,9 +24,9 @@ public class Task {
     @NotNull
     private int hoursEstimate;
 
-    @NotNull
-    @OneToOne()
-    private User owner;
+//    @NotNull
+//    @OneToOne()
+//    private User owner;
 
 
     public Long getId() {
@@ -54,11 +57,11 @@ public class Task {
         this.hoursEstimate = hoursEstimate;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+//    public User getOwner() {
+//        return owner;
+//    }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+//    public void setOwner(User owner) {
+//        this.owner = owner;
+//    }
 }

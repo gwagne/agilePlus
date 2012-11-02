@@ -3,17 +3,21 @@ package opensource.pc.gw.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name="sprint")
 public class Sprint {
 
     @GeneratedValue
     @Id
+    @Column(name = "sprint_id")
     private Long id;
 
     @NotNull
-    @ManyToOne()
-    private Release version;
+    @ManyToOne
+    @JoinColumn(name = "release_id")
+    private Release release;
 
     @NotNull
     private int sprintNumber;
@@ -21,13 +25,13 @@ public class Sprint {
     @NotNull
     private String description;
 
-    @NotNull
-    @OneToOne()
-    private User owner;
+//    @NotNull
+//    @OneToOne()
+//    private User owner;
 
     @NotNull
-    @OneToMany
-    private List<Story> stories;
+    @OneToMany(mappedBy = "sprint")
+    private Set<Story> stories;
 
     public String getDescription() {
         return description;
@@ -41,13 +45,13 @@ public class Sprint {
         return id;
     }
 
-    public User getOwner() {
-        return owner;
-    }
+//    public User getOwner() {
+//        return owner;
+//    }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+//    public void setOwner(User owner) {
+    //       this.owner = owner;
+//    }
 
     public int getSprintNumber() {
         return sprintNumber;
@@ -57,19 +61,19 @@ public class Sprint {
         this.sprintNumber = sprintNumber;
     }
 
-    public List<Story> getStories() {
+    public Set<Story> getStories() {
         return stories;
     }
 
-    public void setStories(List<Story> stories) {
+    public void setStories(Set<Story> stories) {
         this.stories = stories;
     }
 
-    public Release getVersion() {
-        return version;
+    public Release getRelease() {
+        return release;
     }
 
-    public void setVersion(Release version) {
-        this.version = version;
+    public void setRelease(Release release) {
+        this.release = release;
     }
 }

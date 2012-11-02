@@ -12,9 +12,16 @@
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
+        <mapping class="opensource.pc.gw.entities.Project" />
+        <mapping class="opensource.pc.gw.entities.Backlog" />
+        <mapping class="opensource.pc.gw.entities.Epic" />
+        <mapping class="opensource.pc.gw.entities.Release" />
+        <mapping class="opensource.pc.gw.entities.Sprint" />
+        <mapping class="opensource.pc.gw.entities.Story" />
+        <mapping class="opensource.pc.gw.entities.Task" />
 
     </session-factory>
 </hibernate-configuration>
