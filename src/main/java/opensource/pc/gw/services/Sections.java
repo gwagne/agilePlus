@@ -7,10 +7,6 @@ import org.apache.tapestry5.ioc.annotations.UsesOrderedConfiguration;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author olemerdy
- * @since 26/10/12
- */
 @UsesOrderedConfiguration(Section.class)
 public class Sections implements Iterable<Section> {
 

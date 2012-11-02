@@ -1,5 +1,6 @@
 package opensource.pc.gw.entities;
 
+import opensource.pc.gw.enums.Honorific;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.hibernate.validator.constraints.Email;
 

@@ -1,6 +1,6 @@
 package opensource.pc.gw.pages.users;
 
-import opensource.pc.gw.entities.Honorific;
+import opensource.pc.gw.enums.Honorific;
 import opensource.pc.gw.entities.User;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.alerts.AlertManager;

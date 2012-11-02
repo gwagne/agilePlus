@@ -1,4 +1,4 @@
-package opensource.pc.gw.entities;
+package opensource.pc.gw.enums;
 
 public enum Honorific {
 

@@ -8,10 +8,6 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-/**
- * @author olemerdy
- * @since 25/10/12
- */
 public class TapTrainStack implements JavaScriptStack {
 
     public static final String NAME = "taptrain-stack";

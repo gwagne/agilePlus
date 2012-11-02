@@ -5,10 +5,6 @@ import org.apache.tapestry5.services.ComponentClassResolver;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author olemerdy
- * @since 26/10/12
- */
 public class Section {
 
     final ComponentClassResolver componentClassResolver;
