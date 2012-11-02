@@ -1,0 +1,6 @@
+<html t:type="layout" title="${message:title}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<h2>Vous êtes sur la page du projet ${project.name}</h2>
+
+</html>

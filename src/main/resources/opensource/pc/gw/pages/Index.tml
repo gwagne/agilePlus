@@ -4,10 +4,13 @@
       xmlns:p="tapestry:parameter">
 <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
 
-<p>${message:greeting}</p>
+<p>Bienvenue les petits</p>
 
 <t:zone t:id="projectsGridZone" update="show">
-    <t:grid source="projects" row="var:project" class="table table-striped table-bordered">
+    <t:grid source="projects" row="var:project" class="table table-striped table-bordered" add="actions">
+        <p:actionsCell>
+            <t:pagelink page="project/indexproject" context="var:project">Accéder</t:pagelink>
+        </p:actionsCell>
 
     </t:grid>
 </t:zone>
